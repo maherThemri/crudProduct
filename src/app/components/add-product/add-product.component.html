@@ -1,0 +1,68 @@
+<div class="container mt-3">
+    <div class="card">
+        <div class="card-header">
+            <h3>Add Product</h3>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="product" id="formproduct">
+                <div class="row mb-2">
+                    <div class="col">
+                        <label>Name Product</label>
+                        <input type="text" class="form-control" formControlName="name" name="name"
+                            placeholder="Name product">
+                        <div class="text-danger"
+                            *ngIf="product.controls['name'].invalid &&(product.controls['name'].touched || product.controls['name'].dirty )">
+                            <div *ngIf="product.controls['name'].errors?.['required']">
+                                Your name is required
+                            </div>
+                            <div *ngIf="product.controls['name'].errors?.['minlength']">
+                                Min lenght 3 characters
+                            </div>
+                            <div *ngIf="product.controls['name'].errors?.['maxlength']">
+                                Max lenght 12 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <label>Description</label>
+                        <textarea type="text" class="form-control" formControlName="description" name="description"
+                            placeholder="Description product"></textarea>
+                        <div class="text-danger"
+                            *ngIf="product.controls['description'].invalid &&(product.controls['description'].touched || product.controls['description'].dirty )">
+                            <div *ngIf="product.controls['description'].errors?.['required']">
+                                Your description is required
+                            </div>
+                            <div *ngIf="product.controls['description'].errors?.['minlength']">
+                                Min lenght 6 characters
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col">
+                        <label>Price</label>
+                        <input type="number" class="form-control" formControlName="price" name="price"
+                            placeholder="price product">
+                        <div class="text-danger"
+                            *ngIf="product.controls['price'].invalid &&(product.controls['price'].touched || product.controls['price'].dirty )">
+                            <div *ngIf="product.controls['price'].errors?.['required']">
+                                Your price is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-2 d-flex flex-row-reverse bd-highlight mr-1">
+                    <button type="button" class="btn btn-success" [disabled]="product.invalid" (click)="addProduct()"><i
+                            class="fa-regular fa-floppy-disk"></i>&nbsp;Save
+                    </button>
+                    <button type="button" class="btn btn-danger mr-2 " (click)="cancel()">
+                        <i class="fa-solid fa-ban"></i>&nbsp;Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
